@@ -1,5 +1,6 @@
-float teapotSpeed = 20;
-float xPosss = 0;
+float teapotSpeed = -50;
+float xPosss = 200;
+float yPosss = -200;
 
 void updateTeapot() {  
   shader(diffuseShader);
@@ -7,8 +8,8 @@ void updateTeapot() {
   teapot.setFill(color(255, 0, 0));
   xPosss += teapotSpeed*dt;
   pushMatrix();
+    translate(xPosss, yPosss,0);
     rotateX(PI/2);
-    translate(xPosss, 0, -20);
     shape(teapot, 0, 0);
   popMatrix();
   

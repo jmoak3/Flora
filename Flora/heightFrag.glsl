@@ -6,7 +6,7 @@ precision mediump int;
 uniform sampler2D texture;
 
 varying vec4 vertColor;
-varying vec3 ecNormal;
+varying vec3 vertNormal;
 varying vec3 lightDir;
 varying vec4 vertTexCoord;
 varying vec4 vertPosition;
@@ -22,12 +22,9 @@ float random( vec2 p )
 
 void main() {
   vec3 direction = normalize(lightDir);
-  vec3 normal = normalize(ecNormal);
+  vec3 normal = normalize(vertNormal);
   float intensity = max(0.0, dot(direction, normal)); 
-  float noiseX = random(vertPosition.xz)*0.25;
-  float noiseY = random(vertPosition.yx)*0.25;
-  float noiseZ = random(vertPosition.zx)*0.25;
-  vec4 green = vec4(0.2+noiseX, 0.65+noiseY, 0.2+noiseZ, 1.0);
+  vec4 green = vec4(vertColor.r, vertColor.g , vertColor.b, vertColor.a);
   vec4 tintColor = green * vec4(intensity, intensity, intensity, 1);
   gl_FragColor = tintColor;
 }

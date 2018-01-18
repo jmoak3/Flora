@@ -14,11 +14,13 @@ boolean mouseHeld = false;
 int lastMX = 0;
 int lastMY = 0;
 int offsetMX = 0;
-int offsetMY = 0;
-int offsetMZ = 300;
+int offsetMY = -200;
+int offsetMZ = 600;
 
 float dt = 0.0;
 long lastTime = 0;
+
+float lightX = -200;
 
 //****************************   initialization ****************************
 void setup() {               // executed once at the begining 
@@ -29,7 +31,6 @@ void setup() {               // executed once at the begining
   
   heightMap = loadImage("heightmap.png");
   diffuseShader = loadShader("LightFrag.glsl", "LightVert.glsl");
-  heightShader = loadShader("heightFrag.glsl", "heightVert.glsl");
   teapot = loadShape("Teapot.obj");
   terrain = createTerrain();
 }
@@ -40,9 +41,9 @@ void draw() {      // executed at each frame
   lastTime = millis();
   background(color(100, 180, 255));
   updateCamera();
-  pointLight(255,255,255, 200, -1000, 20);
+  pointLight(255,255,255, xPosss, yPosss+20, 0);
   updateTerrain();
-  //updateTeapot();
+  updateTeapot();
 }  
 
 //**************************** user actions ****************************
